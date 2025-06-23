@@ -3,6 +3,10 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { format } from "timeago.js";
 import "../css/card.css";
+import { BASEURL } from "../config";
+
+ 
+
 
 const Card = ({ type, video, isOwnerView = false, onDelete = () => {}, onEdit = () => {} }) => {
   const [channel, setChannel] = useState({});     
@@ -11,7 +15,7 @@ const Card = ({ type, video, isOwnerView = false, onDelete = () => {}, onEdit = 
     const fetchChannel = async () => {
       if (!video?.channelId) return;
       try {
-        const res = await axios.get(`/api/channels/${video.channelId}`);
+        const res = await axios.get(`${BASEURL}/api/channels/${video.channelId}`);
         setChannel(res.data);
       } catch (err) {
         console.error("  Failed to fetch channel:", err);
@@ -27,14 +31,14 @@ const Card = ({ type, video, isOwnerView = false, onDelete = () => {}, onEdit = 
   // image url for video icon
   const bannerSrc =
     channel.channelBanner && channel.channelBanner.trim() !== ""
-      ? `http://localhost:8800/uploads/${encodeURIComponent(channel.channelBanner.replace(/\\/g, "/"))}`
+      ? `${BASEURL}/uploads/${encodeURIComponent(channel.channelBanner.replace(/\\/g, "/"))}`
       : "/default-avatar.jpg";
 
 
   // image url for video thumbnail
   const thumbnailSrc =
     video.imgurl && video.imgurl.trim() !== ""
-      ? `http://localhost:8800/${video.imgurl.replace(/\\/g, "/")}`
+      ? `${BASEURL}/${video.imgurl.replace(/\\/g, "/")}`
       : "/default-avatar.jpg";
   
   

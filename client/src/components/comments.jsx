@@ -5,17 +5,20 @@ import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 import "../css/comments.css";
 import Comment from "./comment.jsx";
+  import { BASEURL } from "../config";
 
 const Comments = ({ videoId }) => {
   const { currentUser } = useSelector((state) => state.user);
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
+ 
   const navigate = useNavigate();
+
 
   useEffect(() => {
     const fetchComments = async () => {
       try {
-        const res = await axios.get(`http://localhost:8800/api/comments/${videoId}`);   // get the comments that are related to the video
+        const res = await axios.get(`${BASEURL}/api/comments/${videoId}`);   // get the comments that are related to the video
         setComments(Array.isArray(res.data) ? res.data : []);
       } catch (err) {
         console.error("Error fetching comments:", err);
@@ -29,7 +32,7 @@ const Comments = ({ videoId }) => {
     if (!newComment.trim()) return;
     try {
       const res = await axios.post(
-        `http://localhost:8800/api/comments/`,
+        `${BASEURL}/api/comments/`,
         {
           videoId,
           desc: newComment,
@@ -48,7 +51,7 @@ const Comments = ({ videoId }) => {
   // function to delete the comment 
   const handleCommentDelete = async (commentId) => {
     try {
-      await axios.delete(`http://localhost:8800/api/comments/${commentId}`, {
+      await axios.delete(`${BASEURL}/api/comments/${commentId}`, {
         withCredentials: true,
       });
       setComments(comments.filter((c) => c._id !== commentId));
@@ -62,7 +65,7 @@ const Comments = ({ videoId }) => {
   const handleCommentUpdate = async (commentId, updatedText) => {
     try {
       const res = await axios.patch(
-        `http://localhost:8800/api/comments/${commentId}`,
+        `${BASEURL}/api/comments/${commentId}`,
         { desc: updatedText },
         { withCredentials: true }
       );
@@ -85,7 +88,7 @@ const Comments = ({ videoId }) => {
         <img
           src={
             currentUser?.img
-              ? `http://localhost:8800${encodeURI(currentUser.img)}`
+              ? `${BASEURL}${encodeURI(currentUser.img)}`
               : "/default-avatar.png"
           }
           alt="User avatar"

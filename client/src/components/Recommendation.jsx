@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Card from "./card";
 import "./style.css";
+import { BASEURL } from "../config";
 
 const Recommendation = ({ tags }) => {
   const [videos, setVideos] = useState([]);
@@ -11,7 +12,7 @@ const Recommendation = ({ tags }) => {
       try {
         
 
-        const res = await axios.get(`/api/videos/tags?tags=${tags}`);
+        const res = await axios.get(`${BASEURL}/api/videos/tags?tags=${tags}`);
          
 
         if (Array.isArray(res.data)) {

@@ -8,11 +8,13 @@ import UploadIcon from '@mui/icons-material/Upload';
 import axios from "axios";
 import Cookies from "js-cookie";
 import "../css/navbar.css";
+import { BASEURL } from "../config";
 
 const Navbar = ({ darkMode, setDarkMode, menuExpanded, setMenuExpanded }) => {
   const navigate = useNavigate();
   const [q, setQ] = useState("");
   const { currentUser } = useSelector((state) => state.user);
+ 
  
 
   // search the qesry when enter key is pressed 
@@ -30,7 +32,7 @@ const Navbar = ({ darkMode, setDarkMode, menuExpanded, setMenuExpanded }) => {
 
     try {
       const res = await axios.post(
-        "http://localhost:8800/api/channels",
+        "${BASEURL}/api/channels",
         { channelName: `${currentUser.name}'s Channel` },
         { withCredentials: true }
       );
@@ -83,7 +85,7 @@ const Navbar = ({ darkMode, setDarkMode, menuExpanded, setMenuExpanded }) => {
             <img
               src={
                 currentUser?.img
-                  ? `http://localhost:8800${encodeURI(currentUser.img)}`
+                  ? `${BASEURL}${encodeURI(currentUser.img)}`
                   : "/default-avatar.png"
               }
               alt="User avatar"

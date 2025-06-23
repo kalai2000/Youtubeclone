@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import Card from "../components/card";
 import "./style2.css";
+  import { BASEURL } from "../config";
 
 const Search = () => {
   const [videos, setVideos] = useState([]);
@@ -12,13 +13,14 @@ const Search = () => {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const searchQuery = queryParams.get("q");
+  
 
   useEffect(() => {
     const fetchVideos = async () => {
       setLoading(true);
       setError(null);
       try {
-        const res = await axios.get(`http://localhost:8800/api/videos/search?q=${searchQuery}`);
+        const res = await axios.get(`${BASEURL}/api/videos/search?q=${searchQuery}`);
         setVideos(Array.isArray(res.data) ? res.data : []);
       } catch (err) {
         setError("Failed to fetch search results.");

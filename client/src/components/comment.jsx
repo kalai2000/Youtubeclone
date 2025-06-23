@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "../css/comment.css";
+import { BASEURL } from "../config";
 
 const Comment = ({ comment, currentUserId, onDelete, onUpdate }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editText, setEditText] = useState(comment.desc);
   const [user, setUser] = useState(null);  
 
+
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const res = await axios.get(`http://localhost:8800/api/users/find/${comment.userId}`);  // api call to fetch the user details
+        const res = await axios.get(`${BASEURL}/api/users/find/${comment.userId}`);  // api call to fetch the user details
         setUser(res.data);
       } catch (err) {
         console.error("Failed to fetch user info:", err);
@@ -41,7 +43,7 @@ const Comment = ({ comment, currentUserId, onDelete, onUpdate }) => {
   return (
     <div className="comment-item">
     <img
-  src={`http://localhost:8800${user?.img?.startsWith("/uploads") ? user.img : "/uploads/" + encodeURIComponent(user?.img || "")}`}
+  src={`${BASEURL}${user?.img?.startsWith("/uploads") ? user.img : "/uploads/" + encodeURIComponent(user?.img || "")}`}
   alt="Avatar"
   className="avatar"
 />

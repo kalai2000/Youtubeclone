@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "../css/upload.css";
+import { BASEURL } from "../config";
 
 const Upload = () => {
   const [img, setImg] = useState(null);
   const [video, setVideo] = useState(null);
   const [inputs, setInputs] = useState({});
   const [tags, setTags] = useState([]);
+ 
 
   const handleChange = (e) => {
     setInputs((prev) => ({
@@ -45,7 +47,7 @@ const Upload = () => {
     }
 
     try {
-      await axios.post("http://localhost:8800/api/videos", formData, {
+      await axios.post(`${BASEURL}/api/videos`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
           Authorization: `Bearer ${token}`,

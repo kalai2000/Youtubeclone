@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { loginFailure, loginStart, loginSuccess } from "../redux/userSlice";
 import { useNavigate } from "react-router-dom";
 import "./style2.css";
+  import { BASEURL } from "../config";
 
 const SignIn = () => {
   const [isSignup, setIsSignup] = useState(false);
@@ -11,6 +12,7 @@ const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [img, setImg] = useState(null);
+ 
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -20,7 +22,7 @@ const SignIn = () => {
     dispatch(loginStart());
     try {
       const res = await axios.post(
-        "http://localhost:8800/api/auth/signin",
+        `${BASEURL}/api/auth/signin`,
         { email, password },
         { withCredentials: true }
       );
@@ -43,7 +45,7 @@ const SignIn = () => {
       if (img) formData.append("img", img);
 
       const res = await axios.post(
-        "http://localhost:8800/api/auth/signup",
+        `${BASEURL}/api/auth/signup`,
         formData,
         {
           headers: { "Content-Type": "multipart/form-data" },

@@ -6,6 +6,7 @@ import Card from "../components/card";
 import EditVideo from "../components/editvideo";
 import "./Channel.css";
 import { useSelector } from "react-redux";
+import { BASEURL } from "../config";
 
 const ChannelPage = () => {
   const navigate = useNavigate();
@@ -14,6 +15,7 @@ const ChannelPage = () => {
   const [channelId, setChannelId] = useState("");
   const [editingVideo, setEditingVideo] = useState(null);
   const currentUser = useSelector((state) => state.user.currentUser);
+ 
 
   useEffect(() => {
     const storedChannelId = Cookies.get("channelId") || "";
@@ -29,7 +31,7 @@ const ChannelPage = () => {
 
     const fetchChannelData = async () => {
       try {
-        const res = await axios.get(`http://localhost:8800/api/channels/${channelId}`, {
+        const res = await axios.get(`${BASEURL}/api/channels/${channelId}`, {
           withCredentials: true,
         });
         setChannel(res.data);
@@ -41,7 +43,7 @@ const ChannelPage = () => {
 
     const fetchChannelVideos = async () => {
       try {
-        const res = await axios.get(`http://localhost:8800/api/videos/byChannel/${channelId}`, {
+        const res = await axios.get(`${BASEURL}/api/videos/byChannel/${channelId}`, {
           withCredentials: true,
         });
         setVideos(res.data);
@@ -56,7 +58,7 @@ const ChannelPage = () => {
 
   const handleDelete = async (videoId) => {
     try {
-      await axios.delete(`http://localhost:8800/api/videos/${videoId}`, {
+      await axios.delete(`${BASEURL}/api/videos/${videoId}`, {
         withCredentials: true,
       });
 
@@ -86,7 +88,7 @@ const ChannelPage = () => {
         <img
           src={
             channel?.channelBanner
-              ? `http://localhost:8800/uploads/${encodeURIComponent(channel.channelBanner)}`
+              ? `${BASEURL}/uploads/${encodeURIComponent(channel.channelBanner)}`
               : "/default-avatar.png"
           }
           alt="Channel"
@@ -111,7 +113,7 @@ const ChannelPage = () => {
             formData.append("banner", file);
 
             try {
-              await axios.post(`http://localhost:8800/api/channels/uploadBanner`, formData, {
+              await axios.post(`${BASEURL}/api/channels/uploadBanner`, formData, {
                 withCredentials: true,
                 headers: {
                   "Content-Type": "multipart/form-data",

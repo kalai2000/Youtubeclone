@@ -18,8 +18,9 @@ import { dislike, fetchSuccess, like } from "../redux/videoSlice";
 import { subscription } from "../redux/userSlice";
 import { format } from "timeago.js";
 import "./video.css";
+  import { BASEURL } from "../config";
 
-const BASE_URL = "http://localhost:8800/api";
+ 
 
 const Video = () => {
   const dispatch = useDispatch();
@@ -33,14 +34,14 @@ const Video = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const videoRes = await axios.get(`${BASE_URL}/videos/find/${path}`, {
+        const videoRes = await axios.get(`${BASEURL}/api/videos/find/${path}`, {
           withCredentials: true,
         });
 
-        const channelRes = await axios.get(`${BASE_URL}/channels/${videoRes.data.channelId}`, {
+        const channelRes = await axios.get(`${BASEURL}/api/channels/${videoRes.data.channelId}`, {
           withCredentials: true,
         });
-        await axios.put(`${BASE_URL}/videos/view/${path}`);
+        await axios.put(`${BASEURL}/api/videos/view/${path}`);
 
         setChannel(channelRes.data);
         dispatch(fetchSuccess(videoRes.data));
@@ -55,7 +56,7 @@ const Video = () => {
   const handleLike = async () => {
     try {
       await axios.put(
-        `${BASE_URL}/users/like/${currentVideo._id}`,
+        `${BASEURL}/api/users/like/${currentVideo._id}`,
         {},
         { withCredentials: true }
       );
@@ -68,7 +69,7 @@ const Video = () => {
   const handleDislike = async () => {
     try {
       await axios.put(
-        `${BASE_URL}/users/dislike/${currentVideo._id}`,
+        `${BASEURL}/api/users/dislike/${currentVideo._id}`,
         {},
         { withCredentials: true }
       );
@@ -84,8 +85,8 @@ const Video = () => {
 
       const isSubscribed = currentUser.subscribedChannels?.includes(channel._id);
       const url = isSubscribed
-        ? `${BASE_URL}/users/unsub/${channel._id}`
-        : `${BASE_URL}/users/sub/${channel._id}`;
+        ? `${BASEURL}/api/users/unsub/${channel._id}`
+        : `${BASEURL}/api/users/sub/${channel._id}`;
 
       await axios.put(url, {}, { withCredentials: true });
       dispatch(subscription(channel._id));
@@ -104,7 +105,7 @@ const Video = () => {
             className="videoFrame"
             controls
             preload="auto"
-            src={`http://localhost:8800/${currentVideo.videourl}`}
+            src={`${BASEURL}/${currentVideo.videourl}`}
           />
         </div>
 
@@ -142,7 +143,7 @@ const Video = () => {
               alt="channel"
               src={
                 channel?.channelBanner
-                  ? `http://localhost:8800/uploads/${encodeURIComponent(
+                  ? `${BASEURL}/uploads/${encodeURIComponent(
                       channel.channelBanner.trim().replace(/\\/g, "/")
                     )}`
                   : "/default-avatar.jpg"
