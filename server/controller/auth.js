@@ -56,7 +56,9 @@ export const signup = async (req, res) => {
 
     // Step 8: Send response
     res
-      .cookie("access_token", token, { httpOnly: true })
+      .cookie("access_token", token, { httpOnly: true,secure: true,
+        sameSite: "None",
+     })
       .status(200)
       .json(others);
   } catch (err) {
@@ -89,7 +91,9 @@ export const signin = async (req, res, next) => {
      
 
     res
-      .cookie("access_token", token, { httpOnly: true })
+      .cookie("access_token", token, { httpOnly: true ,secure: true,
+        sameSite: "None",
+     })
       .status(200)
       .json({ ...others, channelId: user.channelId });  
   } catch (err) {
