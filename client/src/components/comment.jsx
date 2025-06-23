@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "../css/comment.css";
+import "../css/Comment.css";
 import { BASEURL } from "../config";
 
 const Comment = ({ comment, currentUserId, onDelete, onUpdate }) => {

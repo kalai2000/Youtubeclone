@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "../css/editVideo.css";  
+import "../css/Editvideo.css";  
 import { BASEURL } from "../config";
 
 const EditVideo = ({ video, onClose, onUpdate }) => {
