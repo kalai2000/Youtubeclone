@@ -1,0 +1,113 @@
+ .menubar{
+    display: flex;
+    height: 100vh;
+    width: 15rem;
+    flex-direction: column;
+    position:fixed;
+    top:0;
+    z-index: 1000;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+.logo{
+    display: flex;
+     align-items: center;
+    gap: 0.5rem;
+    margin-left: 2rem;
+   
+}
+
+.logo img{
+    width: 30px;
+    height: auto;
+}
+
+
+
+/* img{
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+    padding-right: 1rem;
+    
+} */
+.wrapper{
+    display: flex;
+    flex-direction: column;
+     
+    padding: 20px;
+     
+  
+}
+
+.item:hover{
+
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+.item{
+    padding: 10px 20px; /* Top-bottom: 10px, Left-right: 20px */
+    border: none;
+    border-radius: 4px;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+ 
+.searchbar input{
+    
+    width: 300px;
+    height:  30px;
+    border-radius: 10px;
+    background: black;
+    color: white;
+    border: none;
+    outline-color: #1a58a4;
+     
+     
+    
+}
+.searchbar button{
+   background-color: #2b2d2e;
+   border: none;
+   
+}
+
+ 
+.navbar button:first-of-type
+{
+    margin-left: 1rem;
+    background: transparent;
+    color: white;
+    border: none;
+    font-size: 20px;
+     
+}
+.navbar button:last-of-type
+{
+    margin-right: 1rem;
+}
+/* .wrapper{
+    color: white;
+} */
+.main-bar{
+    
+    display: flex;
+}
+
+ 
+
+/* ************************************card section************************************ */
+
+.card img{
+    width: 100%;
+    height: 202px;
+    color: gray;
+}
+
+/* *******************************************Recommendation section********************************************** */
+.recommendationContainer {
+    flex: 2;
+  }
+  
+
+

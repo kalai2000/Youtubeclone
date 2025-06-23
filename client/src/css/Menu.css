@@ -1,0 +1,93 @@
+/* Menu Container */
+.menu-container {
+  position: fixed;
+  top:  0; /* assuming your navbar is 60px high */
+  left: 0;
+  height: calc(100vh - 60px);
+  width: 200px; /* or 72px if collapsed */
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: transform 0.3s ease, width 0.3s ease;
+  z-index: 990;
+  overflow-y: auto; /* Make the full menu scrollable */
+}
+
+
+/* When menu is expanded */
+.menu-visible {
+  transform: translateX(0);
+  width: 200px;
+}
+ 
+
+
+.menu-collapsed {
+  width: 72px;  
+  transform: translateX(0);  
+}
+
+/* When menu is explicitly hidden (on video page + not expanded) */
+.menu-hidden {
+  transform: translateX(-100%);
+}
+
+/* Menu Wrapper */
+.menu-wrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 0;
+   
+}
+
+
+/* Individual Menu Item */
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 10px 10px;
+  font-size: 14px;
+  cursor: pointer;
+  /* transition: background 0.2s; */
+}
+
+.menu-item:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Horizontal Rule */
+.menu-hr {
+  margin: 10px 0;
+  border: 0.5px solid #ccc;
+}
+
+/* Login Prompt */
+.menu-login {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px;
+  font-size: 14px;
+  cursor: pointer;
+  color: #065fd4;
+}
+
+/* Dark Theme Support */
+.dark-theme .menu-container {
+  background-color: #202020;
+  color: #fff;
+}
+
+.dark-theme .menu-item:hover {
+  background-color: #383838;
+}
+
+.dark-theme .menu-hr {
+  border-color: #444;
+}
+
+.dark-theme .menu-login {
+  color: #3ea6ff;
+}
+
+ 
