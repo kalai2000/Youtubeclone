@@ -1,5 +1,5 @@
 import React from "react";
-import "../css/filterBar.css";
+import "../css/filterbar.css";
 
 const filters = [
   "All", "fun", "news", "logic", "entertainment",
