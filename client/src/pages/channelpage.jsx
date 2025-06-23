@@ -4,7 +4,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import Card from "../components/card";
 import EditVideo from "../components/editvideo";
-import "./Channel.css";
+import "./channel.css";
 import { useSelector } from "react-redux";
 import { BASEURL } from "../config";
 
