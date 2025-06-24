@@ -30,10 +30,11 @@ A full-stack YouTube clone built using the **MERN stack** (MongoDB, Express.js, 
 
 ##  Folder Structure
 
- 
+```
 Fullstack-project/
 ├── client/               # React frontend
 └── server/               # Node.js backend
+```
  
 
  
@@ -115,20 +116,14 @@ node server.js
 # Start frontend
 cd client
 npm run dev
- 
-
-The app will run on:
-
-* Frontend: `http://localhost:5173`
-* Backend: `http://localhost:8800`
-
- 
+  
 ##   Documentation
 
 * Code is organized using feature-based folders
 * API endpoints are defined in Express route files
 * Redux slices manage state for user and video modules
 * All static files (videos/images) are served from the `uploads/` folder
+* once a user signs up an channel page is created for them automatically
 
  
 
@@ -142,6 +137,7 @@ Test the following:
 * Like/Dislike toggle
 * Comment CRUD operations
 * Responsive layout on different devices
+* Edit and delete videos in channel page
 
  
 ##   License
