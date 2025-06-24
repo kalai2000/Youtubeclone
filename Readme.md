@@ -69,7 +69,7 @@ Fullstack-project/
 
  
 git clone https://github.com/kalai2000/Youtubeclone
-cd Youtubeclone
+
  
 
 ### 2. Install dependencies
@@ -89,7 +89,7 @@ npm install
 Create a `.env` file inside the `server/` directory with the following:
 
 ```env
-MONGO=mongodb://localhost:27017/Youtubeclone
+MONGO=your_MONDB_url
 JWT_SECRET=your_JWT_super_secret_key_here
 ```
 
@@ -101,6 +101,8 @@ Also, ensure `.env` is added to `.gitignore`:
  
 # Inside .gitignore
 .env
+
+# Make sure that cors is modified to allow request from frontend
  
 
 ### 4. Run the Application
@@ -148,5 +150,11 @@ This project is for academic and learning purposes.
 
 
 ### GitHub link
+* https://github.com/kalai2000/Youtubeclone
+
+
+
+### netlify link
+* https://6859ae21772b5200087ac319--youtubecloneintershala.netlify.app/
 
 
