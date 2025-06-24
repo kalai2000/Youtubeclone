@@ -103,7 +103,7 @@ const Upload = () => {
         className="upload-input"
       />
 
-      <label className="upload-label">Image:</label>
+      <label className="upload-label"> Thumbnail Image:</label>
       <input
         type="file"
         accept="image/*"
