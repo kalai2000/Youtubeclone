@@ -74,7 +74,7 @@ const SignIn = () => {
               
               onChange={(e) => setName(e.target.value)}
             />
-            <label className="upload-label">Image:</label>
+            <label className="upload-label">User Image:</label>
             <input
               type="file"
               accept="image/*"
