@@ -151,6 +151,6 @@ This project is for academic and learning purposes.
 
 
 ### netlify link
-* https://6859ae21772b5200087ac319--youtubecloneintershala.netlify.app/
+* https://youtubecloneintershala.netlify.app/
 
 
