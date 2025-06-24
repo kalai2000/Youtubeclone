@@ -28,7 +28,21 @@ const connect = async () => {
 };
 
 // Middleware
-app.use(cors({ origin: "https://youtubecloneintershala.netlify.app", credentials: true }));
+const allowedOrigins = [
+  'https://youtubecloneintershala.netlify.app',
+  'https://6859ae21772b5200087ac319--youtubecloneintershala.netlify.app'
+];
+
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true
+}));
 app.use(cookieParser());
 app.use(express.json());
 
